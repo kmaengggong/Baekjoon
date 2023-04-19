@@ -3,18 +3,6 @@
 // Figures: 
 
 public class Temp{
-	public static void main(String[] args){
-	}
-}
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.HashSet;
-
-public class Main{
     //public static HashSet<Integer> preDecimals = new HashSet<>();
     public static HashSet<Integer> getDecimals(int n){
         int sqrt;
