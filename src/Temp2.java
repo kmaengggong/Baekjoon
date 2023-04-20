@@ -6,7 +6,7 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 
-public class Main{
+public class Temp2{
     public static void main(String[] args) throws IOException{
         // 입력 저장
         // N은 중복 O, 순서 X -> ArrayList.
