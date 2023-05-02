@@ -6,7 +6,7 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Main{
+public class Temp4{
     public static int getNextMin(ArrayList<Integer> numbers){
         int min = numbers.get(0);
         for(int number : numbers) if(number < min) min = number;

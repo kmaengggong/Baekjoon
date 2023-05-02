@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
-public class Main{
+public class Temp7{
     static int n;
     static int m;
     static int result = Integer.MAX_VALUE;

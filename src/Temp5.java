@@ -6,7 +6,7 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
 
- public class Main{
+ public class Temp5{
     static StringBuilder sb = new StringBuilder();
 
     public static void depthFirstSearch(int[][] vertexs, int start, int length){

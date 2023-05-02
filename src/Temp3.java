@@ -6,7 +6,7 @@ import java.io.OutputStreamWriter;
 
 import javax.xml.namespace.QName;
 
-public class Main{
+public class Temp3{
     public static void main(String[] args) throws IOException{
         // 입력 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
