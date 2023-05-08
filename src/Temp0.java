@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class Temp0{
@@ -27,33 +28,42 @@ public class Temp0{
             }
         }
         else {
-            Deque<Integer> mins = new LinkedList<>();
+            //Deque<Integer> mins = new LinkedList<>();
+            PriorityQueue<Integer> mins = new PriorityQueue<>();
 
             int in = Integer.parseInt(st.nextToken());
             mins.add(in);
             sb.append(in).append(" ");
             
             in = Integer.parseInt(st.nextToken());
-            if(in < mins.peek()) mins.addFirst(in);
-            else mins.addLast(in);
-            sb.append(mins.peekFirst()).append(" ");
+            //if(in < mins.peek()) mins.addFirst(in);
+            //else mins.addLast(in);
+            mins.add(in);
+            sb.append(mins.peek()).append(" ");
+            System.out.println(mins.toString() + "\n");
 
             for(int i=2; i<l; i++){
                 in = Integer.parseInt(st.nextToken());
-                while(in < mins.peekLast()){
-                    mins.addLast(in);
-                }
-                sb.append(mins.peekFirst()).append(" ");
+                mins.add(in);
+                //while(in < mins.peekLast()){
+                //    mins.addLast(in);
+                //}
+                sb.append(mins.peek()).append(" ");
+                System.out.println(mins.toString());
             }
+            System.out.println();
 
             for(int i=l; i<n; i++){
-                mins.pollFirst();
+                //mins.pollFirst();
+                mins.poll();
                 in = Integer.parseInt(st.nextToken());
-                if(in < mins.peek()){
-                    mins.addFirst(in);
-                }
-                else mins.addLast(in);
-                sb.append(mins.peekFirst()).append(" ");
+                //if(in < mins.peek()){
+                //    mins.addFirst(in);
+                //}
+                //else mins.addLast(in);
+                mins.add(in);
+                sb.append(mins.peek()).append(" ");
+                System.out.println(mins.toString());
             }
         }
         
