@@ -3,7 +3,10 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+<<<<<<< HEAD
 import java.math.BigInteger;
+=======
+>>>>>>> 187083c1c78e672a2a17f8a6adeb277a4c2b1b00
 
 public class Main{
     public static void main(String[] args) throws IOException{
@@ -37,7 +40,7 @@ public class Main{
 
         // 출력
         bw.write(sb.toString());
-
+        
         br.close();
         bw.flush();
         bw.close();
