@@ -9,52 +9,37 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main{
-    public static StringBuffer sb = new StringBuffer();
-    public static ArrayList<Integer[]>[] nodes;
-    public static boolean[] visited;
-    public static int max = Integer.MIN_VALUE;
-    public static int sum = 0;
+    static StringBuffer sb = new StringBuffer();
+    static int n;
+    static int[] pop;
+    static ArrayList<Integer>[] map;
 
     public static void main(String[] args) throws IOException{
         // Input
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        
+        n = Integer.parseInt(br.readLine());
+        
+        pop = new int[n+1];
 
-        int n = Integer.parseInt(br.readLine());
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for(int i=1; i<=n; i++) pop[i] = Integer.parseInt(st.nextToken());
 
-        nodes = new ArrayList[n+1];
-        visited = new boolean[n+1];
-
-        for(int i=1; i<=n; i++) nodes[i] = new ArrayList<Integer[]>();
-
-        StringTokenizer st;
+        map = new ArrayList[n+1];
 
         for(int i=1; i<=n; i++){
+            map[i] = new ArrayList<Integer>();
             st = new StringTokenizer(br.readLine());
-            st.nextToken();
-            int input = Integer.parseInt(st.nextToken());
-            Queue<Integer> queue = new LinkedList<>();
+            int m = Integer.parseInt(st.nextToken());
 
-            while(input != -1){
-                if(queue.size() == 2){
-                    nodes[i].add(new Integer[]{queue.poll(), queue.poll()});
-                }
-                else queue.add(input);
-                input = Integer.parseInt(st.nextToken());
-            }
-        }
-        for(int i=1; i<=n; i++){
-            for(Integer[] node : nodes[i]){
-                System.out.println(i + ": " + node[0] + ", " + node[1]);
-            }
+            for(int j=1; j<=m; j++) map[i].add(Integer.parseInt(st.nextToken()));
         }
 
         // Logic
         for(int i=1; i<=n; i++){
-            dfs(i);
+            bfs(i);
         }
-
-        sb.append(max);
 
         // Output
         bw.write(sb.toString());
@@ -64,22 +49,21 @@ public class Main{
         bw.close();
     }
 
-    public static void dfs(int num){
-        boolean isEnd = true;
-        visited[num] = true; 
+    private static void bfs(int num){
+        Queue<Integer> queue = new LinkedList<>();
+        boolean[] visited = new boolean[n+1];
+        queue.add(num);
+        visited[num] = true;
+        int sum1 = pop[num];
 
-        for(Integer[] node : nodes[num]){
-            if(!visited[num]){
-                isEnd = false;
-                sum += node[1];
-                dfs(node[0]);
-                sum -= node[1];
-            }  
+        while(!queue.isEmpty()){
+            for(int i : map[num]){
+                if(!visited[i]){
+                    queue.add(i);
+                    sum1 += pop[i];
+                }
+            }
+            
         }
-        if(isEnd){
-            if(sum > max) max = sum;
-        }
-
-        visited[num] = false;
     }
 }
