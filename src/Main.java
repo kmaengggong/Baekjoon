@@ -3,43 +3,54 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class Main{
-    static StringBuffer sb = new StringBuffer();
-    static int n;
-    static int[] pop;
-    static ArrayList<Integer>[] map;
+    static StringBuffer sb;
+    static int[] parent;
+    static PriorityQueue<Edge> pq;
 
     public static void main(String[] args) throws IOException{
         // Input
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        
-        n = Integer.parseInt(br.readLine());
-        
-        pop = new int[n+1];
+        sb = new StringBuffer();
 
         StringTokenizer st = new StringTokenizer(br.readLine());
-        for(int i=1; i<=n; i++) pop[i] = Integer.parseInt(st.nextToken());
+        int v = Integer.parseInt(st.nextToken());
+        int e = Integer.parseInt(st.nextToken());
 
-        map = new ArrayList[n+1];
+        parent = new int[v+1];
+        for(int i=1; i<=v; i++) parent[i] = i;
 
-        for(int i=1; i<=n; i++){
-            map[i] = new ArrayList<Integer>();
+        pq = new PriorityQueue<>();
+
+        int n1, n2, w;
+        for(int i=0; i<e; i++){
             st = new StringTokenizer(br.readLine());
-            int m = Integer.parseInt(st.nextToken());
+            n1 = Integer.parseInt(st.nextToken());
+            n2 = Integer.parseInt(st.nextToken());
+            w = Integer.parseInt(st.nextToken());
 
-            for(int j=1; j<=m; j++) map[i].add(Integer.parseInt(st.nextToken()));
+            pq.add(new Edge(n1, n2, w));
         }
 
         // Logic
-        for(int i=1; i<=n; i++){
-            bfs(i);
+        int turn = 1;
+        int result = 0;
+
+        for(Edge edge : pq){
+            System.out.println(edge.weight);
+            if(find(edge.node1) != find(edge.node2)){
+                union(edge.node1, edge.node2);
+                result += edge.weight;
+                turn += 1;
+            }
+            if(turn >= v) break;
         }
+
+        sb.append(result);
 
         // Output
         bw.write(sb.toString());
@@ -49,21 +60,31 @@ public class Main{
         bw.close();
     }
 
-    private static void bfs(int num){
-        Queue<Integer> queue = new LinkedList<>();
-        boolean[] visited = new boolean[n+1];
-        queue.add(num);
-        visited[num] = true;
-        int sum1 = pop[num];
+    static void union(int a, int b){
+        a = find(a);
+        b = find(b);
+        
+        if(a != b) parent[a] = b;
+    }
 
-        while(!queue.isEmpty()){
-            for(int i : map[num]){
-                if(!visited[i]){
-                    queue.add(i);
-                    sum1 += pop[i];
-                }
-            }
-            
-        }
+    static int find(int a){
+        if(parent[a] == a) return a;
+        else return find(parent[a]);
+    }
+}
+class Edge implements Comparable<Edge>{
+    int node1;
+    int node2;
+    int weight;
+
+    Edge(int node1, int node2, int weight){
+        this.node1 = node1;
+        this.node2 = node2;
+        this.weight = weight;
+    }
+
+    @Override
+    public int compareTo(Edge edge){
+        return this.weight - edge.weight;
     }
 }
