@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.StringTokenizer;
 
-public class Main{
+public class P15656NAndM7{
     static StringBuffer sb = new StringBuffer();
     static int n, m;
     static ArrayList<Integer> arr;
