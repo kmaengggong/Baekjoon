@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.Stack;
 
-public class Main{
+public class P1406Editor{
     static StringBuffer sb;
 
     public static void main(String[] args) throws IOException{
