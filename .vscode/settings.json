@@ -4,5 +4,6 @@
     "java.project.referencedLibraries": [
         "lib/**/*.jar"
     ],
-    "java.debug.settings.onBuildFailureProceed": true
+    "java.debug.settings.onBuildFailureProceed": true,
+    "python.pythonPath": "C:\\Users\\KMG\\anaconda3\\envs\\tf210\\python.exe"
 }
